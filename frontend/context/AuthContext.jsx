@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+  const API_URL = import.meta.env.VITE_API_URL || "";
 
   useEffect(() => {
     if (token) {
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
       setError("");
-      const response = await axios.post(`${API_URL}/api/auth/register`, {
+      const response = await axios.post(`/api/auth/register`, {
         username,
         email,
         password,
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
       setError("");
-      const response = await axios.post(`${API_URL}/api/auth/login`, {
+      const response = await axios.post(`/api/auth/login`, {
         email,
         password
       });
