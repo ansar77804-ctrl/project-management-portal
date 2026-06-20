@@ -6,7 +6,7 @@
   "routes": [
     {
       "src": "^/api/(.*)$",
-      "dest": "https://PROJECT_BACKEND_URL/$1",
+      "dest": "https://project-management-portal.railway.internal/$1",
       "headers": { "x-forwarded-host": "$host" }
     },
     { "src": "^/(.*)$", "dest": "/frontend/dist/$1" }
