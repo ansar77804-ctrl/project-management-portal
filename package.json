@@ -5,5 +5,8 @@
     "frontend",
     "backend"
   ],
+  "scripts": {
+    "start": "node backend/server.js"
+  },
   "packageManager": "pnpm@9.15.4"
 }
