@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+  ],
+  "routes": [
+    {
+      "src": "^/api/(.*)$",
+      "dest": "https://project-management-portal-production-0fff.up.railway.app/$1",
+      "headers": { "x-forwarded-host": "$host" }
+    },
+    { "src": "^/(.*)$", "dest": "/dist/$1" }
+  ]
+}
