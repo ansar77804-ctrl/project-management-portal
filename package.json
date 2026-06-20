@@ -1,0 +1,9 @@
+{
+  "name": "project-management-portal-root",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "packageManager": "pnpm@9"
+}
