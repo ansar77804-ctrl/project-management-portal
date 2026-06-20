@@ -1,6 +1,53 @@
 # Project Management Portal
 
-A full-stack web application for managing project tasks with advanced features including user authentication, search, pagination, and real-time statistics. Built according to the o2h Full Stack Application Developer Fresher mock assessment requirements.
+## Setup Steps
+
+- Clone the repository:
+
+  git clone git@github.com:ansar77804-ctrl/project-management-portal.git
+
+- Change into the project folder and install/run services:
+
+  cd project-management-portal
+
+  # Backend
+  cd backend
+  npm install
+  npm run dev
+
+  # Frontend (in a new terminal)
+  cd ../frontend
+  npm install
+  npm run dev
+
+Note: Some environments use `npm start` instead of `npm run dev`; use the command defined in each `package.json`.
+
+## Assumptions
+
+- Node.js and npm are installed (Node >= 16 recommended).
+- MongoDB is available and running locally at `mongodb://127.0.0.1:27017` (or set `MONGODB_URI` in `backend/.env`).
+- Ports `5001` (backend) and `5173` (frontend) are free.
+- You have Git access to push to the repository (SSH or HTTPS).
+
+## API Documentation
+
+Base URL (development): http://localhost:5001/api
+
+Authentication (no token required):
+- POST /api/auth/register — Register a new user.
+  - Body: `{ username, email, password, confirmPassword }`
+- POST /api/auth/login — Login and receive JWT.
+  - Body: `{ email, password }`
+
+Task endpoints (require `Authorization: Bearer <token>` header):
+- GET /api/tasks — List tasks (supports `search`, `page`, `limit`).
+- POST /api/tasks — Create a new task. Body example: `{ title, description, status, dueDate }`.
+- PUT /api/tasks/:id — Update a task by id.
+- DELETE /api/tasks/:id — Delete a task by id.
+- GET /api/statistics — Get summary statistics for the authenticated user.
+
+If you want example requests/responses or environment variable details added, tell me which section to expand.
+
 
 ## 🎯 Features
 
