@@ -19,13 +19,24 @@ app.get("/", (_req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
+// Connect to DB on module load. In serverless environments this will run
+// when the function is initialized. Avoid exiting the process here so the
+// serverless runtime can handle errors gracefully.
 connectDB()
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+    if (require.main === module) {
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    } else {
+      console.log("Database connected (module mode)");
+    }
   })
   .catch((error) => {
     console.error("Database connection failed:", error.message);
-    process.exit(1);
+    if (require.main === module) {
+      process.exit(1);
+    }
   });
+
+module.exports = app;
